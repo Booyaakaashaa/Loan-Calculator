@@ -3,14 +3,14 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--type", choices=["annuity", "diff"], help="Incorrect parameters")
+parser.add_argument("--type", choices=["annuity", "diff"], type=str)
 parser.add_argument("--principal", type=int)
 parser.add_argument("--interest", type=float)
 parser.add_argument("--payment", type=int)
 parser.add_argument("--periods", type=int)
 args = parser.parse_args()
 # print([args.type, args.principal, args.interest, args.payment, len(sys.argv)])
-if args.type == "diff" and args.principal and args.interest and args.periods and len(sys.argv) == 9:
+if args.type == "diff" and args.principal and args.interest and args.periods and len(sys.argv) == 5:
     if args.payment or args.principal < 0 or args.interest < 0 or args.periods < 0:
         print("Incorrect parameters")
     else:
@@ -23,7 +23,7 @@ if args.type == "diff" and args.principal and args.interest and args.periods and
             print("Month {}: payment is {}".format(x, ceil(D)))
             total += ceil(D)
         print("\nOverpayment = {}".format(total - args.principal))
-elif args.type == "annuity" and len(sys.argv) == 9:
+elif args.type == "annuity" and len(sys.argv) == 5:
     if not args.periods:
         i = args.interest / 12 / 100
         n = args.payment / (args.payment - i * args.principal)

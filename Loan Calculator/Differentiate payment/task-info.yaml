@@ -257,19 +257,8 @@ files:
         LoanCalcTest('creditcalc.creditcalc').run_tests()
   learner_created: false
 feedback_link: https://hyperskill.org/projects/90/stages/503/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #1
-
-    No numbers in the answer
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    Arguments: --type=annuity --payment=8722 --periods=120 --interest=5.6
-
-    Incorrect parameters
-  time: Sun, 14 Feb 2021 20:55:08 UTC
+  message: Congratulations!
+  time: Sun, 14 Feb 2021 21:24:35 UTC
 record: -1
