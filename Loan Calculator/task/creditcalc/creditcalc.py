@@ -1,23 +1,48 @@
 
-from math import ceil, log
+from math import ceil, log, pow
 
-loan_principal = int(input("Enter the loan principal:\n"))
-choice = input("What do you want to calculate?\ntype \"m\" - for number of monthly payments,\ntype \"p\" - for the monthly payment:\n")
-if choice == "m":
-    monthly_payment = int(input("Enter the monthly payment:\n"))
-    print()
-    period = ceil(loan_principal / monthly_payment)
-    if period == 1:
-        print("It will take {} month to replay the loan".format(ceil(loan_principal / monthly_payment)))
+choice = input("""What do you want to calculate?
+type "n" for number of monthly payments,
+type "a" for annuity monthly payment amount,
+type "p" for loan principal:\n""")
+
+if choice == "n":
+    principal = int(input("Enter the loan principal:\n"))
+    payment = int(input("Enter the monthly payment:\n"))
+    i = float(input("Enter the loan interest:\n")) / 12 / 100
+    n = payment / (payment - i * principal)
+    time = ceil(log(n, i + 1))
+    years, months = time // 12, time % 12
+    if years == 0:
+        if months == 1:
+            print("It will take 1 month to repay this loan!")
+        else:
+            print("It will take {} months to repay this loan!".format(months))
+    elif months == 0:
+        if years == 1:
+            print("It will take 1 year to repay this loan!")
+        else:
+            print("It will take {} years to repay this loan!".format(years))
     else:
-        print("It will take {} months to replay the loan".format(ceil(loan_principal / monthly_payment)))
+        if years == 1 and months == 1:
+            print("It will take 1 year and 1 month to repay this loan!")
+        elif months == 1:
+            print("It will take {} years and 1 month to repay this loan!".format(years))
+        elif years == 1:
+            print("It will take 1 year and {} months to repay this loan!".format(months))
+        else:
+            print("It will take {} years and {} months to repay this loan!".format(years, months))
+elif choice == "a":
+    principal = int(input("Enter the loan principal:\n"))
+    period = int(input("Enter the number of periods:\n"))
+    i = float(input("Enter the loan interest:\n")) / 12 / 100
+    x = pow(i + 1, period)
+    payment = ceil(principal * i * x / (x - 1))
+    print("Your monthly payment = {}!".format(round(payment)))
 elif choice == "p":
-    no_of_months = int(input("Enter the number of months:\n"))
-    if loan_principal // no_of_months == ceil(loan_principal / no_of_months):
-        print()
-        print("Your monthly payment = {}".format(loan_principal // no_of_months))
-    else:
-        print()
-        payment = ceil(loan_principal / no_of_months)
-        last_payment = loan_principal - (no_of_months - 1) * payment
-        print("Your monthly payment = {} and the last payment = {}".format(payment, last_payment))
+    payment = float(input("Enter the annuity payment:\n"))
+    period = int(input("Enter the number of periods:\n"))
+    i = float(input("Enter the loan interest:\n")) / 12 / 100
+    x = pow(i + 1, period)
+    principal = (x - 1) * payment / x / i
+    print("Your loan principal = {}!".format(round(principal)))
