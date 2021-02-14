@@ -7,7 +7,7 @@ update_date: Sun, 14 Feb 2021 05:08:39 UTC
 stages:
 - id: 500
   step: 8002
-  is_completed: false
+  is_completed: true
 - id: 501
   step: 8003
   is_completed: false
