@@ -1,9 +1,33 @@
 from math import ceil, log, pow
+import sys, argparse
 
-choice = input("""What do you want to calculate?
-type "n" for number of monthly payments,
-type "a" for annuity monthly payment amount,
-type "p" for loan principal:\n""")
+parser = argparse.ArgumentParser()
+parser.add_argument("--type", choices=["annuity", "diff"], help="Incorrect parameters")
+parser.add_argument("--principal", type=int)
+parser.add_argument("--interest",type=float)
+parser.add_argument("--payment",type=)
+parser.add_argument("--periods")
+args = parser.parse_args()
+
+"""principal = int(args.principal)
+interest = float(args.interest)
+periods = int(args.periods)
+payment = int(args.payment)"""
+
+if args.type == "diff" and args.principal and args.interest and args.periods and args.nums == 4:
+    if args.payment or args.principal < 0 or args.interest < 0 or args.periods < 0:
+        print("Incorrect parameters")
+    else:
+        i = 1
+
+
+"""from math import ceil, log, pow
+import sys
+
+# choice = input(What do you want to calculate?
+# type "n" for number of monthly payments,
+# type "a" for annuity monthly payment amount,
+# type "p" for loan principal:\n)
 
 if choice == "n":
     principal = int(input("Enter the loan principal:\n"))
@@ -44,4 +68,4 @@ elif choice == "p":
     i = float(input("Enter the loan interest:\n")) / 12 / 100
     x = pow(i + 1, period)
     principal = (x - 1) * payment / x / i
-    print("Your loan principal = {}!".format(round(principal)))
+    print("Your loan principal = {}!".format(round(principal)))"""
