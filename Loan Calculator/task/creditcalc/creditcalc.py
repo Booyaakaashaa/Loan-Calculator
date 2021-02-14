@@ -4,9 +4,9 @@ import sys, argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--type", choices=["annuity", "diff"], help="Incorrect parameters")
 parser.add_argument("--principal", type=int)
-parser.add_argument("--interest",type=float)
-parser.add_argument("--payment",type=)
-parser.add_argument("--periods")
+parser.add_argument("--interest", type=float)
+parser.add_argument("--payment", type=int)
+parser.add_argument("--periods", type=int)
 args = parser.parse_args()
 
 """principal = int(args.principal)
@@ -19,7 +19,36 @@ if args.type == "diff" and args.principal and args.interest and args.periods and
         print("Incorrect parameters")
     else:
         i = 1
-
+elif args.type == "annuity" and args.nums == 4:
+    if not args.periods:
+        i = args.interest / 12 / 100
+        n = args.payment / (args.payment - i * args.principal)
+        time = ceil(log(n, i + 1))
+        years, months = time // 12, time % 12
+        if years == 0:
+            if months == 1:
+                print("It will take 1 month to repay this loan!")
+            else:
+                print("It will take {} months to repay this loan!".format(months))
+        elif months == 0:
+            if years == 1:
+                print("It will take 1 year to repay this loan!")
+            else:
+                print("It will take {} years to repay this loan!".format(years))
+    elif not args.principal:
+        i = args.interest / 12 / 100
+        x = pow(i + 1, args.periods)
+        principal = (x - 1) * args.payment / x / i
+        print("Your loan principal = {}!".format(round(principal)))
+    elif not args.payment:
+        i = args.interst / 12 / 100
+        x = pow(i + 1, args.periods)
+        payment = ceil(args.principal * i * x / (x - 1))
+        print("Your monthly payment = {}!".format(round(payment)))
+    else:
+        print("Incorrect parameters")
+else:
+    print("Incorrect parameters")
 
 """from math import ceil, log, pow
 import sys
