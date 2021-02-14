@@ -1,4 +1,3 @@
-
 from math import ceil, log, pow
 
 choice = input("""What do you want to calculate?
