@@ -9,11 +9,6 @@ parser.add_argument("--payment", type=int)
 parser.add_argument("--periods", type=int)
 args = parser.parse_args()
 
-"""principal = int(args.principal)
-interest = float(args.interest)
-periods = int(args.periods)
-payment = int(args.payment)"""
-
 if args.type == "diff" and args.principal and args.interest and args.periods and args.nums == 4:
     if args.payment or args.principal < 0 or args.interest < 0 or args.periods < 0:
         print("Incorrect parameters")
